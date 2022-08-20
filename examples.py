@@ -87,7 +87,7 @@ def draw_vectors(nx, ny, width, height, seed=random.randint(0, 100000000), flow_
         # Compute the second points and draw the arrow body
         x_f = x_i + length*math.cos(math.radians(angle))
         y_f = y_i - length*math.sin(math.radians(angle))
-        p.drawLine(x_i, y_i, x_f, y_f)
+        p.drawLine(QPointF(x_s, y_s), QPointF(x_f, y_f))
 
         # Compute the arrow head second points
         a_angle1, a_angle2 = math.radians(angle-30), math.radians(angle+30)
@@ -95,8 +95,8 @@ def draw_vectors(nx, ny, width, height, seed=random.randint(0, 100000000), flow_
         y1 = y_f + (length/10)*math.sin(a_angle1)
         x2 = x_f - (length/10)*math.cos(a_angle2)
         y2 = y_f + (length/10)*math.sin(a_angle2)
-        p.drawLine(x_f, y_f, x1, y1)
-        p.drawLine(x_f, y_f, x2, y2)
+        p.drawLine(QPointF(x_f, y_f), QPointF(x1, y2))
+        p.drawLine(QPointF(x_f, y_f), QPointF(x1, y2))
 
     # Load the Perlin Noise image and draw it with the painter
     p.drawPixmap(QRect(0, 0, width, height), QPixmap(p_path))
@@ -269,7 +269,7 @@ def draw_perlin_rounding(width, height, fname, seed=random.randint(0, 100000000)
             y_f = y_s + STEP_SIZE * math.sin(angle)
 
             # Draw the line
-            p.drawLine(x_s, y_s, x_f, y_f)
+            p.drawLine(QPointF(x_s, y_s), QPointF(x_f, y_f))
 
             # Update the line length
             c_len += math.sqrt((x_f - x_s) ** 2 + (y_f - y_s) ** 2)
